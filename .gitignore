@@ -1,0 +1,22 @@
+# Living memory files (user-specific)
+.claude/*.local.md
+
+# Node modules (if using scripts)
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.swp
+*~

@@ -1,0 +1,360 @@
+{
+  // ==========================================================================
+  // Basic Configuration
+  // ==========================================================================
+
+  // Worker name (required)
+  "name": "my-worker",
+
+  // Entry point file (required)
+  "main": "src/index.ts",
+
+  // Compatibility date - use latest (required)
+  // See: https://developers.cloudflare.com/workers/configuration/compatibility-dates/
+  "compatibility_date": "2024-01-01",
+
+  // Compatibility flags (optional)
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Account ID (optional, but recommended)
+  "account_id": "your-account-id-here",
+
+  // ==========================================================================
+  // Build Configuration
+  // ==========================================================================
+
+  // Build configuration
+  "build": {
+    "command": "npm run build",
+    "watch_dirs": ["src"]
+  },
+
+  // ==========================================================================
+  // Environment Variables
+  // ==========================================================================
+
+  // Non-sensitive environment variables
+  "vars": {
+    "ENVIRONMENT": "production",
+    "API_VERSION": "v2",
+    "DEBUG_MODE": "false",
+    "MAX_RETRIES": "3"
+  },
+
+  // Secrets are set via CLI: wrangler secret put SECRET_NAME
+  // Never put secrets in this file!
+
+  // ==========================================================================
+  // KV Namespaces
+  // ==========================================================================
+
+  "kv_namespaces": [
+    {
+      // Binding name (access as env.CACHE)
+      "binding": "CACHE",
+
+      // Namespace ID from: wrangler kv:namespace create CACHE
+      "id": "abc123...",
+
+      // Preview namespace for wrangler dev (optional)
+      "preview_id": "preview123..."
+    },
+    {
+      "binding": "MY_KV",
+      "id": "def456..."
+    }
+  ],
+
+  // ==========================================================================
+  // D1 Databases
+  // ==========================================================================
+
+  "d1_databases": [
+    {
+      // Binding name (access as env.DB)
+      "binding": "DB",
+
+      // Database name
+      "database_name": "production-database",
+
+      // Database ID from: wrangler d1 create DATABASE_NAME
+      "database_id": "xyz789...",
+
+      // Migrations directory (optional)
+      "migrations_dir": "migrations",
+
+      // Migrations table name (optional)
+      "migrations_table": "__d1_migrations"
+    }
+  ],
+
+  // ==========================================================================
+  // R2 Buckets
+  // ==========================================================================
+
+  "r2_buckets": [
+    {
+      // Binding name (access as env.MY_BUCKET)
+      "binding": "MY_BUCKET",
+
+      // Bucket name
+      "bucket_name": "my-bucket",
+
+      // Preview bucket for local dev (optional)
+      "preview_bucket_name": "my-bucket-preview",
+
+      // Jurisdiction (optional): "eu" or "fedramp"
+      "jurisdiction": "eu"
+    },
+    {
+      "binding": "UPLOADS",
+      "bucket_name": "user-uploads"
+    }
+  ],
+
+  // ==========================================================================
+  // Vectorize Indexes
+  // ==========================================================================
+
+  "vectorize": [
+    {
+      // Binding name (access as env.VECTOR_INDEX)
+      "binding": "VECTOR_INDEX",
+
+      // Index name from: wrangler vectorize create INDEX_NAME
+      "index_name": "my-embeddings-index"
+    }
+  ],
+
+  // ==========================================================================
+  // Workers AI
+  // ==========================================================================
+
+  "ai": {
+    // Binding name (access as env.AI)
+    "binding": "AI"
+  },
+
+  // ==========================================================================
+  // Queues
+  // ==========================================================================
+
+  // Queue producers (send messages)
+  "queues": {
+    "producers": [
+      {
+        // Binding name (access as env.MY_QUEUE)
+        "binding": "MY_QUEUE",
+
+        // Queue name
+        "queue": "my-queue-name"
+      }
+    ],
+
+    // Queue consumers (receive messages)
+    "consumers": [
+      {
+        // Queue name to consume from
+        "queue": "my-queue-name",
+
+        // Max messages per batch (default: 10)
+        "max_batch_size": 10,
+
+        // Max seconds to wait for batch (default: 5)
+        "max_batch_timeout": 5,
+
+        // Max retries on failure (default: 3)
+        "max_retries": 3,
+
+        // Dead letter queue (optional)
+        "dead_letter_queue": "my-queue-dlq"
+      }
+    ]
+  },
+
+  // ==========================================================================
+  // Durable Objects
+  // ==========================================================================
+
+  "durable_objects": {
+    "bindings": [
+      {
+        // Binding name (access as env.COUNTER)
+        "name": "COUNTER",
+
+        // Class name exported from your Worker
+        "class_name": "Counter",
+
+        // Script name if class is in different Worker (optional)
+        "script_name": "durable-objects-worker",
+
+        // Environment of the script (optional)
+        "environment": "production"
+      }
+    ]
+  },
+
+  // Durable Objects migrations (required when adding/removing DOs)
+  "migrations": [
+    {
+      // Migration tag (increment for each migration)
+      "tag": "v1",
+
+      // New Durable Object classes
+      "new_classes": ["Counter"],
+
+      // Renamed classes (optional)
+      // "renamed_classes": [
+      //   { "from": "OldName", "to": "NewName" }
+      // ],
+
+      // Deleted classes (optional)
+      // "deleted_classes": ["ObsoleteClass"]
+    }
+  ],
+
+  // ==========================================================================
+  // Service Bindings
+  // ==========================================================================
+
+  "services": [
+    {
+      // Binding name (access as env.AUTH_SERVICE)
+      "binding": "AUTH_SERVICE",
+
+      // Service (Worker) name to bind to
+      "service": "auth-worker",
+
+      // Environment of the service (optional)
+      "environment": "production"
+    }
+  ],
+
+  // ==========================================================================
+  // Analytics Engine
+  // ==========================================================================
+
+  "analytics_engine_datasets": [
+    {
+      // Binding name (access as env.ANALYTICS)
+      "binding": "ANALYTICS",
+
+      // Dataset name (optional, defaults to binding name)
+      "dataset": "my_analytics"
+    }
+  ],
+
+  // ==========================================================================
+  // Workflows (Beta)
+  // ==========================================================================
+
+  "workflows": [
+    {
+      // Binding name (access as env.MY_WORKFLOW)
+      "binding": "MY_WORKFLOW",
+
+      // Workflow class name exported from your Worker
+      "class_name": "MyWorkflow"
+    }
+  ],
+
+  // ==========================================================================
+  // Multi-Environment Configuration
+  // ==========================================================================
+
+  // Environment-specific overrides
+  // Deploy with: wrangler deploy --env staging
+  "env": {
+    "staging": {
+      "vars": {
+        "ENVIRONMENT": "staging",
+        "DEBUG_MODE": "true"
+      },
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "staging-cache-id"
+        }
+      ],
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "staging-database",
+          "database_id": "staging-db-id"
+        }
+      ]
+    },
+
+    "development": {
+      "vars": {
+        "ENVIRONMENT": "development",
+        "DEBUG_MODE": "true"
+      },
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "dev-cache-id"
+        }
+      ]
+    }
+  },
+
+  // ==========================================================================
+  // Advanced Configuration
+  // ==========================================================================
+
+  // Custom routes (optional)
+  "routes": [
+    {
+      "pattern": "example.com/*",
+      "zone_name": "example.com"
+    }
+  ],
+
+  // Triggers (optional)
+  "triggers": {
+    // Cron triggers
+    "crons": ["0 0 * * *", "*/30 * * * *"]
+  },
+
+  // Usage model (optional): "bundled" (default) or "unbound"
+  "usage_model": "bundled",
+
+  // Limits (optional)
+  "limits": {
+    "cpu_ms": 50
+  },
+
+  // Placement (optional)
+  "placement": {
+    "mode": "smart"
+  },
+
+  // Logpush (optional)
+  "logpush": true,
+
+  // Tail consumers (optional)
+  "tail_consumers": [
+    {
+      "service": "logging-worker"
+    }
+  ],
+
+  // Unsafe bindings (advanced, use with caution)
+  "unsafe": {
+    "bindings": [],
+    "metadata": {}
+  },
+
+  // Node.js compatibility (optional)
+  "node_compat": true,
+
+  // Preserve file names in output (optional)
+  "preserve_file_names": false,
+
+  // Minify output (optional)
+  "minify": false,
+
+  // Source maps (optional)
+  "sourcemaps": true
+}

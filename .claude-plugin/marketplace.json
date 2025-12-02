@@ -1,0 +1,20 @@
+{
+  "name": "steves-claude-marketplace",
+  "description": "Development marketplace for Claude Code development skills and documentation",
+  "owner": {
+    "name": "Steve Leve",
+    "email": "steve.e.leve@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "cloudflare-expert",
+      "description": "Cloudflare Developer Platform Expert - Comprehensive guidance for building on Cloudflare Workers, platform products, and Workers AI",
+      "version": "0.1.0",
+      "source": "./plugins/cloudflare-expert",
+      "author": {
+        "name": "Steve Leve",
+        "email": "steve.e.leve@gmail.com"
+      }
+    }
+  ]
+}

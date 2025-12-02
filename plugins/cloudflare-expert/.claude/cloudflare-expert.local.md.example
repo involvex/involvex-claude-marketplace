@@ -1,0 +1,193 @@
+---
+last_updated: 2025-01-15T10:00:00Z
+project_name: my-cloudflare-project
+---
+
+# Cloudflare Expert - Living Memory
+
+This file stores frequently accessed information, project-specific notes, and common patterns for your Cloudflare project. The cloudflare-expert plugin uses this file to provide faster, more relevant assistance.
+
+**Note**: This is a `.local.md` file and should be gitignored. Copy this example to `.claude/cloudflare-expert.local.md` and customize for your project.
+
+## Frequently Accessed Topics
+
+Add topics here as you work on your project. The cloudflare-docs-specialist agent will offer to save documentation topics here.
+
+### Example: Vectorize Indexing
+- Uses `@cf/baai/bge-base-en-v1.5` for embeddings (768 dimensions)
+- Create index: `wrangler vectorize create my-index --preset="@cf/baai/bge-base-en-v1.5"`
+- Insert vectors: Use metadata to store original text
+- Documentation: https://developers.cloudflare.com/vectorize/
+
+### Example: D1 Migrations
+- Create migration: `wrangler d1 migrations create DB migration_name`
+- Apply locally: `wrangler d1 migrations apply DB`
+- Apply to production: `wrangler d1 migrations apply DB --remote`
+- Documentation: https://developers.cloudflare.com/d1/learning/migrations/
+
+## Recent Commands Used
+
+Track wrangler commands you use frequently:
+
+```bash
+# Development
+wrangler dev --remote
+wrangler tail --env production
+
+# D1
+wrangler d1 execute DB --remote --command="SELECT COUNT(*) FROM notes"
+wrangler d1 migrations apply DB --remote
+
+# Deployment
+wrangler deploy --env staging
+wrangler deploy --env production
+```
+
+## Project-Specific Configuration
+
+### Databases
+- **Production D1**: `my-database` (ID: abc123...)
+- **Staging D1**: `my-database-staging` (ID: def456...)
+
+### Storage
+- **Vectorize Index**: `embeddings-index` (768 dimensions, cosine similarity)
+- **KV Namespace**: `CACHE` (ID: xyz789...)
+- **R2 Bucket**: `uploads`
+
+### Workers AI Models
+- **Text Generation**: `@cf/meta/llama-3.1-8b-instruct`
+- **Embeddings**: `@cf/baai/bge-base-en-v1.5` (768 dims)
+
+## Code Snippets
+
+Save frequently used code patterns here.
+
+### Embedding Generation Pattern
+```javascript
+const embeddings = await env.AI.run('@cf/baai/bge-base-en-v1.5', {
+  text: [inputText]
+}) as { data: number[][] };
+
+const vector = embeddings.data[0];
+```
+
+### D1 Query Pattern
+```javascript
+const result = await env.DB.prepare(
+  'SELECT * FROM notes WHERE id = ?'
+).bind(noteId).first();
+```
+
+### Vectorize Query Pattern
+```javascript
+const results = await env.VECTOR_INDEX.query(queryVector, {
+  topK: 3,
+  returnMetadata: true
+});
+
+const matches = results.matches.map(m => ({
+  id: m.id,
+  score: m.score,
+  text: m.metadata.text
+}));
+```
+
+### RAG Query Pattern
+```javascript
+// 1. Generate question embedding
+const questionEmbedding = await env.AI.run('@cf/baai/bge-base-en-v1.5', {
+  text: [question]
+}) as { data: number[][] };
+
+// 2. Find similar documents
+const similar = await env.VECTOR_INDEX.query(questionEmbedding.data[0], {
+  topK: 3
+});
+
+// 3. Build context
+const context = similar.matches.map(m => m.metadata.text).join('\n\n');
+
+// 4. Generate answer
+const answer = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+  messages: [{
+    role: 'system',
+    content: 'Answer using only the provided context.'
+  }, {
+    role: 'user',
+    content: `Context:\n${context}\n\nQuestion: ${question}`
+  }]
+});
+```
+
+## Common Issues & Solutions
+
+Document solutions to problems you've encountered:
+
+### Issue: Vectorize Not Working in Local Dev
+**Solution**: Vectorize requires remote mode
+```bash
+wrangler dev --remote
+```
+
+### Issue: D1 Migration Conflicts
+**Solution**: Check migration order and dependencies
+```bash
+wrangler d1 migrations list DB --remote
+```
+
+### Issue: Workers AI Rate Limits
+**Solution**: Implement caching with KV
+```javascript
+const cacheKey = `ai:${hash(prompt)}`;
+let cached = await env.CACHE.get(cacheKey);
+if (!cached) {
+  cached = await env.AI.run(model, params);
+  await env.CACHE.put(cacheKey, JSON.stringify(cached), {
+    expirationTtl: 3600
+  });
+}
+```
+
+## Recent Deployments
+
+Track deployment history:
+
+- **2025-01-15 14:30** - Deployed to production
+  - Worker: my-worker
+  - Environment: production
+  - Changes: Added RAG query endpoint
+  - Bindings: D1 (DB), Vectorize (VECTOR_INDEX), AI
+
+- **2025-01-14 16:45** - Deployed to staging
+  - Worker: my-worker
+  - Environment: staging
+  - Changes: Fixed embedding dimension mismatch
+  - Bindings: D1 (DB-staging), Vectorize (VECTOR_INDEX-staging), AI
+
+## Useful Documentation Links
+
+Quick links to frequently referenced docs:
+
+- **Workers Runtime**: https://developers.cloudflare.com/workers/runtime-apis/
+- **D1 Database**: https://developers.cloudflare.com/d1/
+- **Vectorize**: https://developers.cloudflare.com/vectorize/
+- **Workers AI**: https://developers.cloudflare.com/workers-ai/
+- **Wrangler Commands**: https://developers.cloudflare.com/workers/wrangler/commands/
+
+## Notes
+
+Add any project-specific notes, reminders, or context:
+
+- Remember to apply D1 migrations before deploying Worker code
+- Vectorize index dimensions must match embedding model (768 for bge-base-en-v1.5)
+- Use `--remote` flag for wrangler dev when testing Vectorize locally
+- AI Gateway caching enabled for production environment
+
+---
+
+**Tips for using this file**:
+- Update `last_updated` timestamp when making significant changes
+- Keep frequently accessed information at the top
+- Remove outdated information regularly
+- Use this as your project-specific knowledge base
+- The cloudflare-docs-specialist agent will offer to add topics here
