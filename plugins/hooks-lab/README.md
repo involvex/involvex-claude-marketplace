@@ -38,7 +38,7 @@ Hooks Lab is a learning-focused plugin that demonstrates every Claude Code hook 
 ```bash
 # In Claude Code session
 /plugin marketplace add /path/to/claude-marketplace
-/plugin install hooks-lab@steves-claude-marketplace
+/plugin install hooks-lab@involvex-claude-marketplace
 ```
 
 ### Option 2: Direct Load
@@ -367,7 +367,7 @@ MIT
 
 ## Author
 
-Steve Leve (steve.e.leve@gmail.com)
+Involvex
 
 ---
 

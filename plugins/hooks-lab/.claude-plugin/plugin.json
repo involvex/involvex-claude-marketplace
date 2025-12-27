@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "Interactive laboratory for learning Claude Code hooks through verbose logging and demonstrations of lifecycle events, context engineering, and hook patterns",
   "author": {
-    "name": "Steve Leve",
-    "email": "steve.e.leve@gmail.com"
+    "name": "Involvex",
+    "email": "lukaswill97@gmail.com"
   },
   "keywords": [
     "hooks",

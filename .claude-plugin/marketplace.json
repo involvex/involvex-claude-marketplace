@@ -1,9 +1,9 @@
 {
-  "name": "steves-claude-marketplace",
+  "name": "involvex-claude-marketplace",
   "description": "Development marketplace for Claude Code development skills and documentation",
   "owner": {
-    "name": "Steve Leve",
-    "email": "steve.e.leve@gmail.com"
+    "name": "Involvex",
+    "email": "lukaswill97@gmail.com"
   },
   "plugins": [
     {
@@ -12,8 +12,8 @@
       "version": "0.1.0",
       "source": "./plugins/cloudflare-expert",
       "author": {
-        "name": "Steve Leve",
-        "email": "steve.e.leve@gmail.com"
+        "name": "Involvex",
+        "email": "lukaswill97@gmail.com"
       }
     },
     {
@@ -22,8 +22,8 @@
       "version": "0.1.0",
       "source": "./plugins/hooks-lab",
       "author": {
-        "name": "Steve Leve",
-        "email": "steve.e.leve@gmail.com"
+        "name": "Involvex",
+        "email": "lukaswill97@gmail.com"
       }
     }
   ]

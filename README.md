@@ -1,4 +1,4 @@
-# Steve's Claude Code Plugin Marketplace
+# Involvex Claude Code Plugin Marketplace
 
 A personal plugin marketplace for Claude Code development, featuring curated plugins for learning context engineering and agentic development patterns.
 
@@ -38,7 +38,7 @@ claude --plugin-dir /path/to/claude-marketplace/plugins/cloudflare-expert
 
 # Or install from marketplace
 /plugin marketplace add /path/to/claude-marketplace
-/plugin install cloudflare-expert@steves-claude-marketplace
+/plugin install cloudflare-expert@involvex-claude-marketplace
 ```
 
 ### hooks-lab (v0.1.0)
@@ -59,7 +59,7 @@ claude --plugin-dir /path/to/claude-marketplace/plugins/hooks-lab
 
 # Or install from marketplace
 /plugin marketplace add /path/to/claude-marketplace
-/plugin install hooks-lab@steves-claude-marketplace
+/plugin install hooks-lab@involvex-claude-marketplace
 ```
 
 **What You'll Learn:**
