@@ -1,0 +1,69 @@
+{
+  "name": "seo",
+  "version": "1.2.1",
+  "description": "Comprehensive SEO toolkit with keyword research, content optimization, technical audits, multi-agent workflows, and analytics integrations (GA4, GSC, SE Ranking). Features multi-model parallel review, A/B alternative generation, E-E-A-T compliance validation, and data-driven performance analysis.",
+  "author": {
+    "name": "Jack Rudenko",
+    "email": "i@madappgang.com",
+    "company": "MadAppGang"
+  },
+  "license": "MIT",
+  "keywords": [
+    "seo",
+    "content-optimization",
+    "keyword-research",
+    "serp-analysis",
+    "technical-seo",
+    "content-strategy",
+    "google-analytics",
+    "search-console",
+    "se-ranking",
+    "performance-analysis"
+  ],
+  "category": "content",
+  "dependencies": {
+    "orchestration@mag-claude-plugins": "^0.5.0"
+  },
+  "agents": [
+    "./agents/analyst.md",
+    "./agents/researcher.md",
+    "./agents/writer.md",
+    "./agents/editor.md",
+    "./agents/data-analyst.md"
+  ],
+  "commands": [
+    "./commands/research.md",
+    "./commands/optimize.md",
+    "./commands/brief.md",
+    "./commands/audit.md",
+    "./commands/review.md",
+    "./commands/alternatives.md",
+    "./commands/performance.md",
+    "./commands/setup-analytics.md"
+  ],
+  "skills": [
+    "./skills/keyword-cluster-builder",
+    "./skills/content-optimizer",
+    "./skills/content-brief",
+    "./skills/technical-audit",
+    "./skills/serp-analysis",
+    "./skills/schema-markup",
+    "./skills/link-strategy",
+    "./skills/analytics-interpretation",
+    "./skills/performance-correlation",
+    "./skills/data-extraction-patterns"
+  ],
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "mcpServers": "./mcp-servers/mcp-config.json"
+}

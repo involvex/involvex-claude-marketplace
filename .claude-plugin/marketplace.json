@@ -25,6 +25,156 @@
         "name": "Involvex",
         "email": "lukaswill97@gmail.com"
       }
-    }
+    },
+    {
+			"name": "frontend",
+			"source": "./plugins/frontend",
+			"description": "Comprehensive frontend development toolkit with TypeScript, React 19, Vite, TanStack Router & Query v5, shadcn/ui. Features code-analysis integration via claudemem semantic search (replaces claude-context MCP), session-based artifact isolation, LLM performance tracking, shadcn/ui component library knowledge (60+ components), multi-model plan/code review (parallel, 3-5x speedup), 13 focused skills, intelligent workflow detection, and Chrome DevTools MCP debugging.",
+			"version": "3.13.0",
+			"author": {
+				"name": "Jack Rudenko",
+				"email": "i@madappgang.com",
+				"company": "MadAppGang"
+			},
+			"category": "development",
+			"keywords": [
+				"frontend",
+				"typescript",
+				"react",
+				"vite",
+				"tanstack",
+				"testing",
+				"architecture",
+				"ui-testing",
+				"figma-make"
+			],
+			"strict": true
+		},
+		{
+			"name": "code-analysis",
+			"source": "./plugins/code-analysis",
+			"description": "Deep code investigation with claudemem v0.7.0. NEW: Framework documentation fetching (Context7, llms.txt, DevDocs) with unified search across code AND library docs. AST structural analysis with PageRank, callers/callees dependency tracing, code analysis commands (dead-code, test-gaps, impact).",
+			"version": "2.7.0",
+			"author": {
+				"name": "Jack Rudenko",
+				"email": "i@madappgang.com",
+				"company": "MadAppGang"
+			},
+			"category": "development",
+			"keywords": [
+				"code-analysis",
+				"codebase",
+				"investigation",
+				"detective",
+				"architecture",
+				"patterns",
+				"debugging",
+				"code-navigation",
+				"semantic-search",
+				"claudemem"
+			],
+			"strict": true
+		},
+		{
+			"name": "bun",
+			"source": "./plugins/bun",
+			"description": "Production-ready TypeScript backend development with Bun runtime. Includes specialized agents for backend development, API design, and DevOps. Features comprehensive best practices, tools integration (Biome, Prisma, Hono, Docker), testing workflows, and AWS ECS deployment guidance (2025).",
+			"version": "1.5.2",
+			"author": {
+				"name": "Jack Rudenko",
+				"email": "i@madappgang.com",
+				"company": "MadAppGang"
+			},
+			"category": "development",
+			"keywords": [
+				"bun",
+				"typescript",
+				"backend",
+				"hono",
+				"prisma",
+				"biome",
+				"docker",
+				"aws-ecs",
+				"api",
+				"testing"
+			],
+			"strict": true
+		},
+		{
+			"name": "orchestration",
+			"source": "./plugins/orchestration",
+			"description": "Shared multi-agent coordination and workflow orchestration patterns for complex Claude Code workflows. Skills-only plugin providing proven patterns for parallel execution (3-5x speedup), dynamic model discovery, session-based workspaces, LLM performance tracking with ENFORCEMENT. NEW in v0.6.0: model-tracking-protocol skill with MANDATORY pre-launch checklist, file-based tracking detection (fixes env var issues), PreToolUse hook warns before Task calls, optional STRICT_MODE blocking, 5-component validation in SubagentStop.",
+			"version": "0.6.0",
+			"author": {
+				"name": "Jack Rudenko",
+				"email": "i@madappgang.com",
+				"company": "MadAppGang"
+			},
+			"category": "development",
+			"keywords": [
+				"orchestration",
+				"multi-agent",
+				"workflow",
+				"claudish",
+				"quality-gates",
+				"parallel-execution",
+				"coordination",
+				"grok",
+				"gemini",
+				"consensus",
+				"error-recovery",
+				"tdd",
+				"skills"
+			],
+			"strict": true
+		},
+		{
+			"name": "agentdev",
+			"source": "./plugins/agentdev",
+			"description": "Create, implement, and review Claude Code agents and commands with multi-model validation and LLM performance tracking (NEW). Full-cycle development workflow: design (architect) → plan review → implementation (developer) → quality review (reviewer) → iteration. Features parallel external model reviews, quality gates, and comprehensive XML/YAML standards.",
+			"version": "1.1.0",
+			"author": {
+				"name": "Jack Rudenko",
+				"email": "i@madappgang.com",
+				"company": "MadAppGang"
+			},
+			"category": "development",
+			"keywords": [
+				"agents",
+				"commands",
+				"development",
+				"multi-model",
+				"claudish",
+				"quality-review",
+				"xml-standards",
+				"orchestration"
+			],
+			"strict": true
+		},
+		{
+			"name": "seo",
+			"source": "./plugins/seo",
+			"description": "Comprehensive SEO toolkit with keyword research, content optimization, technical audits, multi-agent workflows, and analytics integrations (GA4, GSC, SE Ranking). Features multi-model parallel review, A/B alternative generation, E-E-A-T compliance validation, data-driven performance analysis, and five-role agent architecture (Analyst → Researcher → Writer → Editor → Data Analyst).",
+			"version": "1.2.1",
+			"author": {
+				"name": "Jack Rudenko",
+				"email": "i@madappgang.com",
+				"company": "MadAppGang"
+			},
+			"category": "content",
+			"keywords": [
+				"seo",
+				"content-optimization",
+				"keyword-research",
+				"serp-analysis",
+				"technical-seo",
+				"content-strategy",
+				"google-analytics",
+				"search-console",
+				"se-ranking",
+				"performance-analysis"
+			],
+			"strict": true
+		}
   ]
 }

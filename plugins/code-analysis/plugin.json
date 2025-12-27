@@ -1,0 +1,99 @@
+{
+	"name": "code-analysis",
+	"version": "2.7.0",
+	"description": "Deep code investigation with ENFORCED claudemem v0.7.0. AST structural analysis with PageRank, callers/callees dependency tracing, full call chain context. NEW: Framework documentation fetching (Context7, llms.txt, DevDocs). Unified search across code AND library docs. PreToolUse hooks intercept Grep/Bash/Glob/Read.",
+	"author": {
+		"name": "Jack Rudenko",
+		"email": "i@madappgang.com",
+		"company": "MadAppGang"
+	},
+	"license": "MIT",
+	"keywords": [
+		"code-analysis",
+		"codebase",
+		"investigation",
+		"detective",
+		"architecture",
+		"patterns",
+		"debugging",
+		"code-navigation",
+		"semantic-search",
+		"claudemem",
+		"hooks",
+		"interception",
+		"enforcement"
+	],
+	"category": "development",
+	"hooks": {
+		"SessionStart": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh"
+					}
+				]
+			}
+		],
+		"PreToolUse": [
+			{
+				"matcher": "Grep",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "${CLAUDE_PLUGIN_ROOT}/hooks/intercept-grep.sh"
+					}
+				]
+			},
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "${CLAUDE_PLUGIN_ROOT}/hooks/intercept-bash.sh"
+					}
+				]
+			},
+			{
+				"matcher": "Glob",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "${CLAUDE_PLUGIN_ROOT}/hooks/intercept-glob.sh"
+					}
+				]
+			},
+			{
+				"matcher": "Read",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "${CLAUDE_PLUGIN_ROOT}/hooks/intercept-read.sh"
+					}
+				]
+			}
+		]
+	},
+	"agents": [
+		"./agents/codebase-detective.md"
+	],
+	"commands": [
+		"./commands/analyze.md",
+		"./commands/help.md",
+		"./commands/setup.md"
+	],
+	"skills": [
+		"./skills/deep-analysis",
+		"./skills/claudemem-search",
+		"./skills/claudemem-orchestration",
+		"./skills/claudish-usage",
+		"./skills/code-search-selector",
+		"./skills/search-interceptor",
+		"./skills/architect-detective",
+		"./skills/developer-detective",
+		"./skills/tester-detective",
+		"./skills/debugger-detective",
+		"./skills/ultrathink-detective",
+		"./skills/cross-plugin-detective"
+	]
+}
